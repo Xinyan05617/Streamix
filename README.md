@@ -14,6 +14,7 @@ Beste terminal bat ireki, eta honako komandoak exekutatu.:
 2. npm install
 //npm install react-router-dom router, aurrekoarekin ez badu funtzionatzen, hau exekutatu.
 3. npm start
+
 login url adibidea:
 http://localhost:3000/login
 
