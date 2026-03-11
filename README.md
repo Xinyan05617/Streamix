@@ -1,1 +1,34 @@
 # Streamix
+
+python -m venv .venv
+.venv\Scripts\activate   # Windowsean, ingurune virtuala eskuz aktibatzeko
+pip install -r requirements.txt
+
+# Programa exekutatzeko
+programa exekutzatzeko Terminal batean:
+python run.py
+
+Beste terminal bat ireki: 
+cd .\app\frontend
+npm install
+//npm install react-router-dom router, aurrekoarekin ez badu funtzionatzen, hau exekutatu.
+npm start
+login url adibidea:
+http://localhost:3000/login
+
+# Kontuetan izan
+- Ordenagailu lokalean Node.js deskargatuta eduki behar da (https://nodejs.org/)
+1. Deskargatutako .msi fitxategia exekutatu
+2. Instalazioan:
+3. Onartu “License agreement”
+4. Aukeratu “Next”
+5. Helmugako direktorioa utzi bere horretan
+6. “Add to PATH” aukera aktibatu → Honek Node.js eta npm komandoak terminalean erabilgarri jartzen ditu
+7. Amaitu instalazioa: Egiaztatzeko, ordenagailu lokalean exekutatu: node -v eta npm -v (Bi komandoek balioak erakusten badituzte, instalazioa ondo egin da)
+- Behar izanez gero PATH aldatu eskuz:
+1. Windows bilaketa → “Environment Variables”
+2. “Edit system environment variables” → “Environment Variables”
+3. “System variables” → Path → “Edit” → NIRE KASUAN:
+   4. C:\Program Files\nodejs\
+5. C:\Users\xwang\AppData\Roaming\npm
+- Python 3.x ere beharrezkoa da Flask backend-rako
