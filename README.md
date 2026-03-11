@@ -10,10 +10,10 @@ Terminal batean, exekutatu honako komandoa:
 python run.py
 
 Beste terminal bat ireki, eta honako komandoak exekutatu.: 
-cd .\app\frontend
-npm install
+1. cd .\app\frontend
+2. npm install
 //npm install react-router-dom router, aurrekoarekin ez badu funtzionatzen, hau exekutatu.
-npm start
+3. npm start
 login url adibidea:
 http://localhost:3000/login
 
