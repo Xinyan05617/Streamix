@@ -1,20 +1,21 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 from app.database.database import Connection
 import jwt
 import datetime
 
-baimena_bp = Blueprint("baimena", __name__)
+auth_bp = Blueprint("auth", __name__)
 
-# 数据库对象
+# Datu-baseko konexioa sortu
 db = Connection()
-#SECRET_KEY = os.environ.get("SECRET_KEY")
+
+# JWT token-ak sortzeko gako sekretua
 SECRET_KEY = "streamix_secret"
 
 
 # -----------------------------
-# ERREGISTRATU (注册)
+# ERREGISTRATU (erabiltzaile berria sortu)
 # -----------------------------
-@baimena_bp.route("/erregistratu", methods=["POST"])
+@auth_bp.route("/erregistratu", methods=["POST"])
 def erregistratu():
 
     datuak = request.get_json()
@@ -23,7 +24,7 @@ def erregistratu():
     email = datuak.get("email")
     pasahitza = datuak.get("pasahitza")
 
-    # 检查用户是否已经存在
+    # Egiaztatu erabiltzailea existitzen den ala ez
     erabiltzailea = db.select(
         "SELECT * FROM erabiltzaileak WHERE email = ?",
         (email,)
@@ -32,7 +33,7 @@ def erregistratu():
     if erabiltzailea:
         return jsonify({"mezua": "Erabiltzaile hori existitzen da"}), 400
 
-    # 插入新用户
+    # Erabiltzaile berria datu-basean sartu
     db.insert(
         "INSERT INTO erabiltzaileak (izena, email, pasahitza) VALUES (?, ?, ?)",
         (izena, email, pasahitza)
@@ -42,16 +43,17 @@ def erregistratu():
 
 
 # -----------------------------
-# LOGIN (登录)
+# SAIO-HASIERA (login)
 # -----------------------------
-@baimena_bp.route("/sartu", methods=["POST"])
-def sartu():
+@auth_bp.route("/login", methods=["POST"])
+def login():
 
     datuak = request.get_json()
 
     email = datuak.get("email")
     pasahitza = datuak.get("pasahitza")
 
+    # Email bidez erabiltzailea bilatu
     erabiltzailea = db.select(
         "SELECT * FROM erabiltzaileak WHERE email = ?",
         (email,)
@@ -62,16 +64,17 @@ def sartu():
 
     erabiltzailea = erabiltzailea[0]
 
+    # Pasahitza egiaztatu
     if erabiltzailea["pasahitza"] != pasahitza:
         return jsonify({"mezua": "Pasahitz okerra"}), 401
 
-    # JWT token
+    # JWT token-a sortu (2 orduko balioa)
     token = jwt.encode(
         {
             "id": erabiltzailea["id"],
             "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=2)
         },
-        SECRET_KEY,
+        current_app.config['SECRET_KEY'],
         algorithm="HS256"
     )
 

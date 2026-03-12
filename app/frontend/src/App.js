@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Erregistratu from "./erregistratu";
-import Login from "./login";
+import Login from "./Login";
+import Erregistratu from "./Erregistratu";
 
 function App() {
   return (

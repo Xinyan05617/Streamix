@@ -1,9 +1,14 @@
+#Pycharm
+.idea/
 # Python
 __pycache__/
 *.pyc
 *.pyo
-.venv/
+*.pyd
+env/
+venv/
 
 # Node / React
 node_modules/
 build/
+dist/

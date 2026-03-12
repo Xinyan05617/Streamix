@@ -1,14 +1,14 @@
 # run.py
 from flask import Flask
 from flask_cors import CORS
-from app.backend.auth import baimena_bp  # 你的认证蓝图
+from app.backend.auth import auth_bp  # Autentifikazio blueprint-a inportatu
 
 app = Flask(__name__)
-CORS(app)  # 允许跨域，前端 fetch 才能调用
-app.config['SECRET_KEY'] = 'zure_gako_sekretua'
+CORS(app)  # CORS aktibatu, frontend-eko fetch eskaerek backend-a deitu ahal izateko
+app.config['SECRET_KEY'] = 'streamix_secret'  # Aplikazioaren gako sekretua
 
-# 注册蓝图
-app.register_blueprint(baimena_bp, url_prefix='/api/baimena')
+# Blueprint-a erregistratu
+app.register_blueprint(auth_bp, url_prefix="/api/auth")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True)  # Flask zerbitzaria debug moduan abiarazi
