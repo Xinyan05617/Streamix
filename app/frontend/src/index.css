@@ -1,12 +1,36 @@
+/* index.css - Estilo global, App.css-rekin koordinatua */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Gorputzaren estilo nagusia */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0f172a; /* Atzeko planoa */
+  color: #ffffff; /* Testu kolorea */
 }
 
+/* Kutxa modeloa guztientzat */
+* {
+  box-sizing: border-box;
+}
+
+/* Estilo loturentzako */
+a {
+  color: #fbbf24;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #f59e0b; /* Hover kolorea */
+  text-decoration: underline;
+}
+
+/* Testu kodearen estiloa */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
